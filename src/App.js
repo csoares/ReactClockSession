@@ -25,10 +25,19 @@ class App extends Component {
 
   handleVisits = (event) => {
     // increment the state visits - and store in the localStorage or sessionStorage
+    let visits = this.state.visits;
+    if (event.target.name === "plus") {
+      visits++;
+      this.setState({ visits: visits });
+    } else if (this.state.visits > 0) {
+      visits--;
+      this.setState({ visits: visits });
+    }
+    sessionStorage.setItem("visits", visits);
   };
 
   componentDidMount() {
-    this.setState({ visits: localStorage.getItem("visits") || 0 });
+    this.setState({ visits: sessionStorage.getItem("visits") || 0 });
     setInterval(() => {
       let now = new Date();
 
