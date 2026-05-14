@@ -53,7 +53,7 @@ class App extends Component {
   render() {
     const visits = this.state.visits;
     const hours = this.state.hours;
-    const style = {
+    const styleHour = {
       transform: `rotate(${hours}deg)`,
     };
 
@@ -66,7 +66,7 @@ class App extends Component {
         </p>
         <div className="clock">
           <div className="wrap">
-            <span style={style} className="hour"></span>
+            <span style={styleHour} className="hour"></span>
             <span className="minute"></span>
             <span className="second"></span>
             <span className="dot"></span>
