@@ -1,38 +1,82 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 100vh;
+  background: #D9D7DD;
 }
 
-.App-link {
-  color: #61dafb;
+.clock {
+  border-radius: 100%;
+  background: #ffffff;
+  font-family: "Montserrat";
+  border: 8px solid white;
+  box-shadow: inset 8px 6px 10px 0 rgba(0, 0, 0, 0.1);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.wrap {
+  overflow: hidden;
+  position: relative;
+  width: 350px;
+  height: 350px;
+  border-radius: 100%;
+}
+
+.minute, .hour {
+  position: absolute;
+  height: 100px;
+  width: 14px;
+  margin: auto;
+  top: -28%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: black;
+  transform-origin: bottom center;
+  transform: rotate(0deg);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+  z-index: 0;
+}
+
+.minute {
+  position: absolute;
+  height: 175px;
+  width: 9px;
+  top: -49%;
+  left: 0;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+  transform: rotate(90deg);
+  z-index: 1;
+}
+
+.second {
+  position: absolute;
+  height: 164px;
+  width: 5px;
+  margin: auto;
+  top: -46%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 6px;
+  background: #FF4B3E;
+  transform-origin: bottom center;
+  transform: rotate(180deg);
+  z-index: 2;
+}
+
+.dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 100px;
+  background: white;
+  border: 8px solid #1b1b1b;
+  border-radius: 100px;
+  margin: auto;
+  z-index: 3;
 }

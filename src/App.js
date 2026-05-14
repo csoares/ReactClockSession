@@ -1,25 +1,89 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      date: new Date(),
+      hours: null,
+      minutes: null,
+      seconds: null,
+      visits: 0,
+    };
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
+  handleVisits = (event) => {
+    // increment the state visits - and store in the localStorage or sessionStorage
+  };
+
+  componentDidMount() {
+    this.setState({ visits: localStorage.getItem("visits") || 0 });
+    setInterval(() => {
+      let now = new Date();
+
+      this.setState({
+        date: now,
+        // update the hours, minutes and seconds
+        hours: (now.getHours() % 12 || 0) * (360 / 12),
+      });
+    }, 50);
+  }
+
+  getHours() {
+    return this.state.date.getHours();
+  }
+  getMinutes() {
+    return this.state.date.getMinutes();
+  }
+  getSeconds() {
+    return this.state.date.getSeconds();
+  }
+
+  render() {
+    const visits = this.state.visits;
+    const hours = this.state.hours;
+    const style = {
+      transform: `rotate(${hours}deg)`,
+    };
+
+    return (
+      <div>
+        <p>Current time:</p>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          {this.state.date.toDateString()} - {this.getHours()}h
+          {this.getMinutes()}:{this.getSeconds()}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+        <div className="clock">
+          <div className="wrap">
+            <span style={style} className="hour"></span>
+            <span className="minute"></span>
+            <span className="second"></span>
+            <span className="dot"></span>
+          </div>
+        </div>
+        <p>How many visits? {visits}</p>
+        <form onSubmit={this.handleSubmit}>
+          <button type="submit" name="plus" onClick={this.handleVisits}>
+            PLUS
+          </button>
+          <button type="submit" name="minus" onClick={this.handleVisits}>
+            MINUS
+          </button>
+        </form>
+      </div>
+    );
+  }
 }
 
 export default App;
