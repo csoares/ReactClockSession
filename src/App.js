@@ -35,7 +35,7 @@ class App extends Component {
       this.setState({
         date: now,
         // update the hours, minutes and seconds
-        hours: (now.getHours() % 12 || 0) * (360 / 12),
+        hours: this.state.hours + 1, // hours: (now.getHours() % 12 || 0) * (360 / 12),
       });
     }, 50);
   }
